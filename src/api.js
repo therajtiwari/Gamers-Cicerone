@@ -29,7 +29,10 @@ const currentDateToday = yearToday + "-" + monthToday + "-" + dateToday;
 const prevYearDateToday = yearToday - 1 + "-" + monthToday + "-" + dateToday;
 const nextYearDateToday = yearToday + 1 + "-" + monthToday + "-" + dateToday;
 
-const games_url =
-  base_url + "games?dates=" + prevYearDateToday + "," + currentDateToday;
+//popular games
 
-console.log(games_url);
+const popular_games = `games?date=${prevYearDateToday},${currentDateToday}`;
+
+export const popularGamesURL = () => base_url + popular_games;
+
+// console.log(popularGamesURL());
