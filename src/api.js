@@ -30,9 +30,12 @@ const prevYearDateToday = yearToday - 1 + "-" + monthToday + "-" + dateToday;
 const nextYearDateToday = yearToday + 1 + "-" + monthToday + "-" + dateToday;
 
 //popular games
-
-const popular_games = `games?date=${prevYearDateToday},${currentDateToday}`;
+const popular_games = `games?date=${prevYearDateToday},${currentDateToday}&ordering=-rating&page_size=10`;
+const upcoming_games = `games?date=${currentDateToday},${nextYearDateToday}&ordering=-added`;
+// const latest_games = `games?date=`;
 
 export const popularGamesURL = () => base_url + popular_games;
+export const upcomingGamesURL = () => base_url + upcoming_games;
 
 // console.log(popularGamesURL());
+// console.log(upcomingGamesURL())
