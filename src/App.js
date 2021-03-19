@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { loadGames } from "./actions/gameActions";
-function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadGames());
-  });
+import React from "react";
+//components and pages
+import Home from "./pages/Home";
+import GlobalStyles from "./components/GlobalStyles";
 
+function App() {
   return (
     <div>
-      <h1>The FPS Guide</h1>
+      <GlobalStyles />
+      {/* <h1>GameBuzz</h1> */}
+      <Home />
     </div>
   );
 }

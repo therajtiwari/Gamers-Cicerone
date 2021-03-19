@@ -5,7 +5,6 @@ import { popularGamesURL, latest_gamesURL, upcomingGamesURL } from "../api";
 
 export const loadGames = () => async (dis) => {
   //fetch data with axios
-  
   console.log(popularGamesURL());
   console.log(upcomingGamesURL());
   console.log(latest_gamesURL());
@@ -23,4 +22,4 @@ export const loadGames = () => async (dis) => {
   });
 };
 
-// export default loadGames;
+export default loadGames;
