@@ -13,7 +13,7 @@ import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { blue, grey } from "@material-ui/core/colors";
+import { grey } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -54,14 +54,14 @@ export default function GameCards({ name, released, gameImage }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const style1 = {
-    padding: "3rem",
-  };
+  // const style1 = {
+  //   padding: "3rem",
+  // };
   return (
     <StyledGame>
-      <CardActionArea>
+      <CardActionArea style={{ display: "flex", width: "100%" }}>
         <Box boxShadow={5}>
-          <Card className={classes.root}>
+          <Card className={classes.root} style={{ width: "100%" }}>
             <Box boxShadow={3}>
               {/* redundant box */}
               <CardHeader
@@ -151,5 +151,6 @@ export default function GameCards({ name, released, gameImage }) {
 }
 
 const StyledGame = styled(motion.div)`
-  //   box-shadow: 1px 1px 3px grey;
+  // box-shadow: 1px 1px 3px grey;
+  // backgroundColor:red;
 `;

@@ -38,10 +38,13 @@ const Home = () => {
 };
 
 const GameList = styled(motion.div)`
-  padding: 0rem 8rem;
+  margin: auto;
+  width: 80%;
   h2 {
     padding: 3rem 0rem;
   }
+
+  // text-align: center;
 `;
 const Games = styled(motion.div)`
   // background-color: red;
