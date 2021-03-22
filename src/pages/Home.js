@@ -50,7 +50,7 @@ const Games = styled(motion.div)`
   // background-color: red;
   min-height: 40vh;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-column-gap: 4rem;
   grid-row-gap: 6rem;
 `;
