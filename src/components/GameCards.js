@@ -20,6 +20,10 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Box from "@material-ui/core/Box";
 
+//REDUX
+import { useDispatch } from "react-redux";
+import loadDetails from "../actions/detailsActions";
+
 //styling
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -47,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GameCards({ name, released, gameImage }) {
+export default function GameCards({ name, released, gameImage, id }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -57,8 +61,14 @@ export default function GameCards({ name, released, gameImage }) {
   // const style1 = {
   //   padding: "3rem",
   // };
+
+  const dispatch = useDispatch();
+  const loadDetailsHandler = () => {
+    // console.log("in first");
+    dispatch(loadDetails(id));
+  };
   return (
-    <StyledGame>
+    <StyledGame onClick={loadDetailsHandler}>
       <CardActionArea style={{ display: "flex", width: "100%" }}>
         <Box boxShadow={5}>
           <Card className={classes.root} style={{ width: "100%" }}>

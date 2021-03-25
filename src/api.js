@@ -39,7 +39,9 @@ const latest_games = `games?api=${apiKey}&dates=${prevYearDateToday},${currentDa
 export const popularGamesURL = () => base_url + popular_games;
 export const upcomingGamesURL = () => base_url + upcoming_games;
 export const latest_gamesURL = () => base_url + latest_games;
-
+export const gameDetailsURL = (id) => base_url + "games/" + id;
+export const gameScreenshotsURL = (id) =>
+  base_url + "games/" + id + "/screenshots";
 // console.log(popularGamesURL());
 // console.log(upcomingGamesURL())
 // console.log(latest_gamesURL());
