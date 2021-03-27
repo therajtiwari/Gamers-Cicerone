@@ -6,12 +6,13 @@ const loadDetails = (id) => async (dispatch) => {
   // console.log(gameDetailsURL(id));
   const detailsData = await axios.get(gameDetailsURL(id));
   const screenshotData = await axios.get(gameScreenshotsURL(id));
+  console.log(gameScreenshotsURL(id));
 
   dispatch({
     type: "GET_DETAILS",
     payload: {
       gameDetail: detailsData.data,
-      gameSS: screenshotData.data.results,
+      gameSS: screenshotData.data,
     },
   });
 };

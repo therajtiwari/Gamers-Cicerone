@@ -3,6 +3,7 @@ import { loadGames } from "../actions/gameActions";
 import { useDispatch, useSelector } from "react-redux";
 //components
 import GameCards from "../components/GameCards";
+import GameDetail from "../components/GameDetail";
 
 //styling
 import styled from "styled-components";
@@ -22,7 +23,9 @@ const Home = () => {
 
   return (
     <GameList>
+      <GameDetail />
       <h2>Latest Popular Games</h2>
+
       <Games>
         {popular.map((game) => (
           <GameCards

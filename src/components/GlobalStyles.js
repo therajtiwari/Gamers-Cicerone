@@ -17,6 +17,9 @@ html{
     &::-webkit-scrollbar-thumb{
         background-color:#989898;
     }
+    &::-webkit-scrollbar-track{
+        background:white;
+    }
     
 }
 
