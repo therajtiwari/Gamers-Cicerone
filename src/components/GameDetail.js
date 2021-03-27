@@ -13,34 +13,34 @@ const GameDetail = () => {
   return (
     <CardShadow>
       <Detail>
-        <div className="stats">
-          <div className="rating">
+        <Stats>
+          <Rating>
             <h3>{gameDetail.name}</h3>
-            <p>Rating: {gameDetail.rating}</p>
-          </div>
-          <div className="info">
+            <h3 style={{marginTop:"1rem"}}>Rating: {gameDetail.rating}</h3>
+          </Rating>
+          <Info>
             <h3>Platforms</h3>
-            <div className="platforms">
+            <Platforms>
               {gameDetail.platforms.map((data) => (
                 <h3>{data.platform.name} </h3>
               ))}
-            </div>
-          </div>
-        </div>
-        <div className="media">
+            </Platforms>
+          </Info>
+        </Stats>
+        <Media>
           <img
             src={gameDetail.background_image}
             alt={gameDetail.name + "-main"}
           />
-        </div>
-        <div className="description">
+        </Media>
+        <Description>
           <p>{gameDetail.description_raw}</p>
-        </div>
-        <div className="gallery">
+        </Description>
+        <Gallery>
           {gameSS.results.map((ss) => (
-            <img src={ss.image}></img>
+            <img src={ss.image} alt={ss.image}></img>
           ))}
-        </div>
+        </Gallery>
       </Detail>
     </CardShadow>
   );
@@ -74,11 +74,11 @@ const CardShadow = styled(motion.div)`
 
 const Detail = styled(motion.div)`
 
-  width: 80%;
+  width: 82%;
   border-radius: 0.5rem;
   color: black;
   margin:0rem auto;
-  padding: 4rem 10rem;
+  padding: 4rem 7rem;
   background: white;
   position: absolute;
   img {
@@ -86,4 +86,58 @@ const Detail = styled(motion.div)`
   }
 
 `;
+
+const Stats = styled(motion.div)`
+
+  display:flex;
+  justify-content:space-between;
+
+`;
+
+
+const Info = styled(motion.div)`
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+
+`;
+
+
+const Rating = styled(motion.div)`
+
+
+
+`;
+
+const Platforms = styled(motion.div)`
+  margin-top:1rem;
+  display:flex;
+  justify-content:space-between;
+
+
+`;
+
+const Media = styled(motion.div)`
+margin:3rem 2rem;
+margin-top:5rem;
+
+`;
+
+const Description = styled(motion.div)`
+margin:4rem 0rem;
+line-height:1.8rem;
+
+`;
+
+const Gallery = styled(motion.div)`
+display: flex;
+flex-wrap: wrap;
+img{
+  width:50%;
+  padding:1rem;
+}
+
+`;
+
 export default GameDetail;
