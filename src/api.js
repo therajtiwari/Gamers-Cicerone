@@ -11,7 +11,7 @@ const getCurrentDate = () => {
 
 // current month
 const getCurrentMonth = () => {
-  const month = new Date().getMonth();
+  const month = new Date().getMonth() + 1;
   if (month < 10) return `0${month}`;
   else return month;
 };
@@ -32,9 +32,9 @@ const twentyYearsBackDateToday =
   yearToday - 5 + "-" + monthToday + "-" + dateToday;
 const apiKey = process.env.REACT_APP_API;
 //popular games
-const popular_games = `games?api=${apiKey}&dates=${twentyYearsBackDateToday},${currentDateToday}&ordering=-rating&page_size=12`;
-const upcoming_games = `games?api=${apiKey}&dates=${currentDateToday},${nextYearDateToday}&ordering=-added&page_size=12`;
-const latest_games = `games?api=${apiKey}&dates=${prevYearDateToday},${currentDateToday}&orderin=-released&page_size=12`;
+const popular_games = `games?key=${apiKey}&dates=${twentyYearsBackDateToday},${currentDateToday}&ordering=-rating&page_size=12`;
+const upcoming_games = `games?key=${apiKey}&dates=${currentDateToday},${nextYearDateToday}&ordering=-added&page_size=12`;
+const latest_games = `games?key=${apiKey}&dates=${prevYearDateToday},${currentDateToday}&orderin=-released&page_size=12`;
 
 export const popularGamesURL = () => base_url + popular_games;
 export const upcomingGamesURL = () => base_url + upcoming_games;
@@ -43,5 +43,5 @@ export const gameDetailsURL = (id) => base_url + "games/" + id;
 export const gameScreenshotsURL = (id) =>
   base_url + "games/" + id + "/screenshots";
 // console.log(popularGamesURL());
-// console.log(upcomingGamesURL())
+// console.log(upcomingGamesURL());
 // console.log(latest_gamesURL());

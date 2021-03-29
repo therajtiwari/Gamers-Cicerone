@@ -11,6 +11,7 @@ export const loadGames = () => async (dis) => {
   const popularGamesData = await axios.get(popularGamesURL());
   const latestGamesData = await axios.get(latest_gamesURL());
   const upcomingGamesData = await axios.get(upcomingGamesURL());
+  // console.log(popularGamesData, latestGamesData, upcomingGamesData);
 
   dis({
     type: "FETCH_GAMES",

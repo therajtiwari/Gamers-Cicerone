@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { loadGames } from "../actions/gameActions";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 //components
 import GameCards from "../components/GameCards";
 import GameDetail from "../components/GameDetail";
-
+// import gamesReducer from "../reducers/gamesReducers";
 //styling
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -16,18 +17,18 @@ const Home = () => {
     dispatch(loadGames());
   }, [dispatch]);
 
+  // getting the current location
+  const location = useLocation();
+  const pathID = location.pathname.split("/")[2];
+  // console.log(pathID);
   //get the data back
   const { popular, latest, upcoming } = useSelector((state) => state.games);
-  // console.log(popular, latest, upcoming);
-  // popular.map((game) => console.log(game.name));
-
   return (
     <GameList>
-      <GameDetail />
+      {pathID && <GameDetail />}
       <h2>Latest Popular Games</h2>
-
       <Games>
-        {popular.map((game) => (
+        {latest.map((game) => (
           <GameCards
             name={game.name}
             released={game.released}

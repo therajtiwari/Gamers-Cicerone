@@ -4,9 +4,12 @@ import { gameScreenshotsURL } from "../api";
 
 const loadDetails = (id) => async (dispatch) => {
   // console.log(gameDetailsURL(id));
+
+  dispatch({
+    type: "LOADING",
+  });
   const detailsData = await axios.get(gameDetailsURL(id));
   const screenshotData = await axios.get(gameScreenshotsURL(id));
-  console.log(gameScreenshotsURL(id));
 
   dispatch({
     type: "GET_DETAILS",
