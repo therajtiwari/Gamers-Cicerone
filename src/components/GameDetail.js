@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 //REDUX
 import { useSelector } from "react-redux";
 
@@ -7,14 +8,27 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const GameDetail = () => {
+  // history
+  const history = useHistory();
+
   const { gameSS, gameDetail, isLoading } = useSelector(
     (state) => state.details
   ); //see how it extracts from the data
 
+  const exitHandler = (e) => {
+    // console.log(e.target.classList);
+    if (e.target.classList.contains("shadowArea")) {
+      // console.log("got it");
+      document.body.style.overflow = "auto";
+      history.push("/");
+      console.log(history);
+    }
+  };
+
   return (
     <>
       {!isLoading && (
-        <CardShadow>
+        <CardShadow className="shadowArea" onClick={exitHandler}>
           <Detail>
             <Stats>
               <Rating>

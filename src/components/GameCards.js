@@ -20,6 +20,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Box from "@material-ui/core/Box";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 //REDUX
 import { useDispatch } from "react-redux";
 import loadDetails from "../actions/detailsActions";
@@ -61,15 +62,23 @@ export default function GameCards({ name, released, gameImage, id }) {
   // const style1 = {
   //   padding: "3rem",
   // };
+  // uselocation
+  const location = useLocation();
 
   const dispatch = useDispatch();
   const loadDetailsHandler = () => {
     // console.log("in first");
     dispatch(loadDetails(id));
+    document.body.style.overflow = "hidden";
   };
+
+  if (location.pathname === "/") {
+    document.body.style.overflow = "auto";
+  }
+
   return (
     <StyledGame onClick={loadDetailsHandler}>
-      <Link to={`/game/${id}`}>
+      <Link to={`/game/${id}`} style={{ textDecoration: "none" }}>
         <CardActionArea style={{ display: "flex", width: "100%" }}>
           <Box boxShadow={5}>
             <Card className={classes.root} style={{ width: "100%" }}>
@@ -129,15 +138,17 @@ export default function GameCards({ name, released, gameImage, id }) {
                     saffron and set aside for 10 minutes.
                   </Typography>
                   <Typography paragraph>
-                    Heat oil in a (14- to 16-inch) paella pan or a large, deep
-                    skillet over medium-high heat. Add chicken, shrimp and
-                    chorizo, and cook, stirring occasionally until lightly
-                    browned, 6 to 8 minutes. Transfer shrimp to a large plate
-                    and set aside, leaving chicken and chorizo in the pan. Add
-                    pimentón, bay leaves, garlic, tomatoes, onion, salt and
-                    pepper, and cook, stirring often until thickened and
-                    fragrant, about 10 minutes. Add saffron broth and remaining
-                    4 1/2 cups chicken broth; bring to a boil.
+                    <styledPara>
+                      Heat oil in a (14- to 16-inch) paella pan or a large, deep
+                      skillet over medium-high heat. Add chicken, shrimp and
+                      chorizo, and cook, stirring occasionally until lightly
+                      browned, 6 to 8 minutes. Transfer shrimp to a large plate
+                      and set aside, leaving chicken and chorizo in the pan. Add
+                      pimentón, bay leaves, garlic, tomatoes, onion, salt and
+                      pepper, and cook, stirring often until thickened and
+                      fragrant, about 10 minutes. Add saffron broth and
+                      remaining 4 1/2 cups chicken broth; bring to a boil.
+                    </styledPara>
                   </Typography>
                   <Typography paragraph>
                     Add rice and stir very gently to distribute. Top with
@@ -163,6 +174,11 @@ export default function GameCards({ name, released, gameImage, id }) {
 }
 
 const StyledGame = styled(motion.div)`
+  // box-shadow: 1px 1px 3px grey;
+  // backgroundColor:red;
+`;
+
+const styledPara = styled(motion.div)`
   // box-shadow: 1px 1px 3px grey;
   // backgroundColor:red;
 `;

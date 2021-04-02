@@ -24,21 +24,53 @@ const Home = () => {
   //get the data back
   const { popular, latest, upcoming } = useSelector((state) => state.games);
   return (
-    <GameList>
-      {pathID && <GameDetail />}
-      <h2>Latest Popular Games</h2>
-      <Games>
-        {latest.map((game) => (
-          <GameCards
-            name={game.name}
-            released={game.released}
-            gameImage={game.background_image}
-            id={game.id}
-            key={game.id}
-          />
-        ))}
-      </Games>
-    </GameList>
+    <div>
+      <GameList>
+        {pathID && <GameDetail />}
+        <h2>Latest Popular Games</h2>
+        <Games>
+          {latest.map((game) => (
+            <GameCards
+              name={game.name}
+              released={game.released}
+              gameImage={game.background_image}
+              id={game.id}
+              key={game.id}
+            />
+          ))}
+        </Games>
+      </GameList>
+      {/* <GameList>
+        {pathID && <GameDetail />}
+        <h2>Latest Popular Games</h2>
+        <Games>
+          {popular.map((game) => (
+            <GameCards
+              name={game.name}
+              released={game.released}
+              gameImage={game.background_image}
+              id={game.id}
+              key={game.id}
+            />
+          ))}
+        </Games>
+      </GameList>
+      <GameList>
+        {pathID && <GameDetail />}
+        <h2>Upcoming Popular Games</h2>
+        <Games>
+          {upcoming.map((game) => (
+            <GameCards
+              name={game.name}
+              released={game.released}
+              gameImage={game.background_image}
+              id={game.id}
+              key={game.id}
+            />
+          ))}
+        </Games>
+      </GameList> */}
+    </div>
   );
 };
 

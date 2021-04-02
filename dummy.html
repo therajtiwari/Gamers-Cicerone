@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>
+      Click the button to do a global search for the character "h" in a string.
+    </p>
+
+    <button onclick="myFunction()">Try it</button>
+
+    <p id="demo"></p>
+
+    <script>
+      function myFunction() {
+        var str = "Is this fucking all there is for god's sake?";
+        var patt1 = /\s/g;
+        var result = str.match(patt1);
+        document.getElementById("demo").innerHTML = result;
+      }
+    </script>
+  </body>
+</html>
