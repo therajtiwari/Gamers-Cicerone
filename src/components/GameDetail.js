@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 //styling and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { Spinner } from 'react-bootstrap'
 
 const GameDetail = () => {
   // history
@@ -27,7 +28,7 @@ const GameDetail = () => {
 
   return (
     <>
-      {!isLoading && (
+      {!isLoading ? (
         <CardShadow
           className="shadowArea"
           onClick={exitHandler}
@@ -66,7 +67,21 @@ const GameDetail = () => {
             </Gallery>
           </Detail>
         </CardShadow>
-      )}
+      ) :
+        <>
+          <CardShadow
+            className="shadowArea"
+            onClick={exitHandler}
+            style={{ padding: "3rem auto" }}
+          >
+            <Detail>
+              <div style={{ width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <Spinner animation="border" style={{ minHeight: "100px", minWidth: "35px" }} variant="secondary" />
+              </div>
+            </Detail>
+          </CardShadow>
+
+        </>}
     </>
   );
 };
@@ -96,6 +111,7 @@ const CardShadow = styled(motion.div)`
 
 const Detail = styled(motion.div)`
   width: 80%;
+  min-height: 100vh;
   border-radius: 0.5rem;
   color: black;
   margin: 1rem auto;

@@ -1,5 +1,4 @@
-// import React from "react";
-// //styling and animation
+
 
 import React from "react";
 
@@ -56,11 +55,8 @@ export default function GameCards({ name, released, gameImage, id }) {
 
 const StyledGame = styled(motion.div)`
   box-shadow: 1px 1px 5px grey;
-  backgroundcolor: red;
   border-radius: 5px;
   overflow: hidden;
-
   // padding: 1rem;
-
   margin: 2rem auto;
 `;

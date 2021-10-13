@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { loadGames } from "../actions/gameActions";
 import { useDispatch, useSelector } from "react-redux";
+import { loadGames } from "../actions/gameActions";
 import { useLocation } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 //components
@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 const Home = () => {
   //   fetch games
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(loadGames());
   }, [dispatch]);
@@ -29,7 +30,7 @@ const Home = () => {
       {pathID && <GameDetail />}
       <h2>Latest Popular Games</h2>
 
-      <Games>
+      <StyledGames>
         <Row>
           {upcoming.map((game) => (
             <Col md={6} sm={12} lg={4}>
@@ -43,12 +44,12 @@ const Home = () => {
             </Col>
           ))}
         </Row>
-      </Games>
-    </Container>
-    /* <GameList>
+      </StyledGames>
+
+      {/* <GameList>
         {pathID && <GameDetail />}
         <h2>Latest Popular Games</h2>
-        <Games>
+        <StyledGames>
           {popular.map((game) => (
             <GameCards
               name={game.name}
@@ -58,12 +59,12 @@ const Home = () => {
               key={game.id}
             />
           ))}
-        </Games>
+        </StyledGames>
       </GameList>
       <GameList>
         {pathID && <GameDetail />}
         <h2>Upcoming Popular Games</h2>
-        <Games>
+        <StyledGames>
           {upcoming.map((game) => (
             <GameCards
               name={game.name}
@@ -73,8 +74,9 @@ const Home = () => {
               key={game.id}
             />
           ))}
-        </Games>
-      // </GameList> */
+        </StyledGames>
+      </GameList> */}
+    </Container>
   );
 };
 
@@ -87,7 +89,7 @@ const GameList = styled(motion.div)`
 
   // text-align: center;
 `;
-const Games = styled(motion.div)`
+const StyledGames = styled(motion.div)`
   // background-color: red;
   // min-height: 40vh;
   // display: grid;
