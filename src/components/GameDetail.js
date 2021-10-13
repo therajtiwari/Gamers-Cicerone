@@ -28,7 +28,11 @@ const GameDetail = () => {
   return (
     <>
       {!isLoading && (
-        <CardShadow className="shadowArea" onClick={exitHandler}>
+        <CardShadow
+          className="shadowArea"
+          onClick={exitHandler}
+          style={{ padding: "3rem auto" }}
+        >
           <Detail>
             <Stats>
               <Rating>
@@ -91,10 +95,10 @@ const CardShadow = styled(motion.div)`
 `;
 
 const Detail = styled(motion.div)`
-  width: 82%;
+  width: 80%;
   border-radius: 0.5rem;
   color: black;
-  margin: 0rem auto;
+  margin: 1rem auto;
   padding: 4rem 7rem;
   background: white;
   position: absolute;
