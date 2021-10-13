@@ -4,7 +4,6 @@ const base_url = "https://api.rawg.io/api/";
 
 const getCurrentDate = () => {
   const date = new Date().getDate();
-
   if (date < 10) return `0${date}`;
   else return date;
 };
