@@ -1,14 +1,27 @@
-import React from 'react'
-
-const PageNotFound = () => {
+import React from "react";
+//components and pages
+import Home from "./pages/Home";
+import PageNotFound from "./pages/404";
+import GlobalStyles from "./components/GlobalStyles";
+import { Switch, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+function App() {
     return (
-        <div id="wrapper">
-            <img src="https://i.imgur.com/qIufhof.png" />
-            <div id="info">
-                <h3>This page could not be found</h3>
-            </div>
-        </div >
-    )
+        <div>
+
+            <GlobalStyles />
+            <Switch>
+
+                <Route exact path={["/", "/game/:id"]}>
+
+                    <Home />
+                </Route>
+                <Route path="">
+                    <PageNotFound />
+                </Route>
+            </Switch>
+        </div>
+    );
 }
 
-export default PageNotFound
+export default App;
