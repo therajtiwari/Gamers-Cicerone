@@ -1,6 +1,4 @@
-
-
-import React from "react";
+import { React, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -14,32 +12,45 @@ import { motion } from "framer-motion";
 
 export default function GameCards({ name, released, gameImage, id }) {
   const location = useLocation();
-
+  const stringID = id.toString();
   const dispatch = useDispatch();
   const loadDetailsHandler = () => {
-    console.log("in first");
+
     dispatch(loadDetails(id));
+    console.log("path from gamecard", typeof (toString(id)))
     document.body.style.overflow = "hidden";
   };
 
+  // useEffect(() => {
+  //   if (location.pathname === "/") {
+  //     console.log("testingggggg");
+  //     document.body.style.overflow = "auto";
+  //   }
+
+  // }, [])
+
   if (location.pathname === "/") {
+    // console.log("testingggggg");
     document.body.style.overflow = "auto";
   }
+  
+
 
   return (
-    <StyledGame onClick={loadDetailsHandler}>
+    <StyledGame layoutId={stringID} onClick={loadDetailsHandler}>
       <Link
         to={`/game/${id}`}
         style={{ textDecoration: "none", color: "black" }}
       >
-        <h4 style={{ textAlign: "center", paddingTop: "1rem" }}> {name}</h4>
+        <motion.h4 layoutId={"title " + stringID} style={{ textAlign: "center", paddingTop: "1rem" }}> {name}</motion.h4>
         <h5
           style={{ textAlign: "center", paddingBottom: "1rem", color: "grey" }}
         >
           {released}
         </h5>
-        <img
+        <motion.img
           src={gameImage}
+          layoutId={"image " + stringID}
           style={{
             width: "100%",
             minHeight: "275px",
