@@ -8,8 +8,9 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Spinner } from 'react-bootstrap'
 
-const GameDetail = () => {
+const GameDetail = ({ pathID }) => {
   // history
+  console.log("path from details", typeof (pathID))
   const history = useHistory();
 
   const { gameSS, gameDetail, isLoading } = useSelector(
@@ -22,52 +23,53 @@ const GameDetail = () => {
       // console.log("got it");
       document.body.style.overflow = "auto";
       history.push("/");
-      console.log(history);
+      // console.log(history);
     }
   };
 
   return (
     <>
-      {!isLoading ? (
-        <CardShadow
-          className="shadowArea"
-          onClick={exitHandler}
-          style={{ padding: "3rem auto" }}
-        >
-          <Detail>
-            <Stats>
-              <Rating>
-                <h3>{gameDetail.name}</h3>
-                <h3 style={{ marginTop: "1rem" }}>
-                  Rating: {gameDetail.rating}
-                </h3>
-              </Rating>
-              <Info>
-                <h3>Platforms</h3>
-                <Platforms>
-                  {gameDetail.platforms.map((data) => (
-                    <h3>{data.platform.name} </h3>
-                  ))}
-                </Platforms>
-              </Info>
-            </Stats>
-            <Media>
-              <img
-                src={gameDetail.background_image}
-                alt={gameDetail.name + "-main"}
-              />
-            </Media>
-            <Description>
-              <p>{gameDetail.description_raw}</p>
-            </Description>
-            <Gallery>
-              {gameSS.results.map((ss) => (
-                <img src={ss.image} alt={ss.image} key={ss.image}></img>
-              ))}
-            </Gallery>
-          </Detail>
-        </CardShadow>
-      ) :
+      {/* {!isLoading ? ( */}
+      <CardShadow
+        className="shadowArea"
+        onClick={exitHandler}
+        style={{ padding: "3rem auto" }}
+      >
+        <Detail layoutId={pathID}>
+          <Stats>
+            <Rating>
+              <motion.h3 layoutId={"title " + pathID}>{gameDetail.name}</motion.h3>
+              <h3 style={{ marginTop: "1rem" }}>
+                Rating: {gameDetail.rating}
+              </h3>
+            </Rating>
+            <Info>
+              <h3>Platforms</h3>
+              <Platforms>
+                {gameDetail.platforms.map((data) => (
+                  <h3>{data.platform.name} </h3>
+                ))}
+              </Platforms>
+            </Info>
+          </Stats>
+          <Media>
+            <motion.img
+              layoutId={"image " + pathID}
+              src={gameDetail.background_image}
+              alt={gameDetail.name + "-main"}
+            />
+          </Media>
+          <Description>
+            <p>{gameDetail.description_raw}</p>
+          </Description>
+          <Gallery>
+            {gameSS.results.map((ss) => (
+              <img src={ss.image} alt={ss.image} key={ss.image}></img>
+            ))}
+          </Gallery>
+        </Detail>
+      </CardShadow>
+      {/* ) :
         <>
           <CardShadow
             className="shadowArea"
@@ -81,7 +83,7 @@ const GameDetail = () => {
             </Detail>
           </CardShadow>
 
-        </>}
+        </>} */}
     </>
   );
 };

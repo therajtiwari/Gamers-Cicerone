@@ -9,9 +9,11 @@ import GameDetail from "../components/GameDetail";
 // import gamesReducer from "../reducers/gamesReducers";
 //styling
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 
 const Home = () => {
+
+  // console.log("in homeeeeeeeeeeeeeeeeee")
   //   fetch games
   const dispatch = useDispatch();
 
@@ -19,34 +21,39 @@ const Home = () => {
     dispatch(loadGames());
   }, [dispatch]);
 
+
   // getting the current location
   const location = useLocation();
   const pathID = location.pathname.split("/")[2];
-  // console.log(pathID);
+  console.log("home", typeof (pathID));
   //get the data back
   const { popular, latest, upcoming } = useSelector((state) => state.games);
   return (
-    <Container fluid style={{ width: "80%" }}>
-      {pathID && <GameDetail />}
-      <h2>Latest Popular Games</h2>
+    <AnimateSharedLayout type="crossfade">
+      <Container fluid style={{ width: "80%" }}>
 
-      <StyledGames>
-        <Row>
-          {upcoming.map((game) => (
-            <Col md={6} sm={12} lg={4}>
-              <GameCards
-                name={game.name}
-                released={game.released}
-                gameImage={game.background_image}
-                id={game.id}
-                key={game.id}
-              />
-            </Col>
-          ))}
-        </Row>
-      </StyledGames>
+        <AnimatePresence>
+          {pathID ? <GameDetail pathID={pathID} /> : <></>}
+        </AnimatePresence>
+        <h2>Latest Popular Games</h2>
 
-      {/* <GameList>
+        <StyledGames>
+          <Row>
+            {upcoming.map((game) => (
+              <Col md={6} sm={12} lg={4}>
+                <GameCards
+                  name={game.name}
+                  released={game.released}
+                  gameImage={game.background_image}
+                  id={game.id}
+                  key={game.id}
+                />
+              </Col>
+            ))}
+          </Row>
+        </StyledGames>
+
+        {/* <GameList>
         {pathID && <GameDetail />}
         <h2>Latest Popular Games</h2>
         <StyledGames>
@@ -76,7 +83,9 @@ const Home = () => {
           ))}
         </StyledGames>
       </GameList> */}
-    </Container>
+
+      </Container >
+    </AnimateSharedLayout>
   );
 };
 

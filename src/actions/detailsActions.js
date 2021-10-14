@@ -10,7 +10,6 @@ const loadDetails = (id) => async (dispatch) => {
   });
   const detailsData = await axios.get(gameDetailsURL(id));
   const screenshotData = await axios.get(gameScreenshotsURL(id));
-
   dispatch({
     type: "GET_DETAILS",
     payload: {
