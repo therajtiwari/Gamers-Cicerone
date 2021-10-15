@@ -9,6 +9,8 @@ import loadDetails from "../actions/detailsActions";
 //styling
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { popUp } from "../animations";
+
 
 export default function GameCards({ name, released, gameImage, id }) {
   const location = useLocation();
@@ -37,7 +39,7 @@ export default function GameCards({ name, released, gameImage, id }) {
 
 
   return (
-    <StyledGame layoutId={stringID} onClick={loadDetailsHandler}>
+    <StyledGame layoutId={stringID} onClick={loadDetailsHandler} variants={popUp} initial="hidden" animate="show">
       <Link
         to={`/game/${id}`}
         style={{ textDecoration: "none", color: "black" }}

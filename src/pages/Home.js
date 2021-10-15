@@ -8,6 +8,7 @@ import GameCards from "../components/GameCards";
 import GameDetail from "../components/GameDetail";
 import Nav from "../components/Nav"
 import { loadSearchedGames } from '../actions/gameActions'
+import { fadeIn  } from "../animations";
 
 // import gamesReducer from "../reducers/gamesReducers";
 //styling
@@ -49,7 +50,7 @@ const Home = () => {
         </AnimatePresence>
 
         {searched && searched.length > 0 ?
-          <GameList>
+          <GameList variants={fadeIn} initial="hidden" animate="show" >
             <h2>Search Results</h2>
             <StyledGames>
               <Row>
@@ -70,7 +71,7 @@ const Home = () => {
             </StyledGames>
           </GameList>
           : <> </>}
-        <GameList>
+        <GameList variants={fadeIn} initial="hidden" animate="show" >
           <h2>Upcoming Games</h2>
           <StyledGames>
             <Row>
@@ -88,7 +89,7 @@ const Home = () => {
             </Row>
           </StyledGames>
         </GameList>
-        <GameList>
+        <GameList variants={fadeIn} initial="hidden" animate="show" >
           <h2>Latest Games</h2>
           <StyledGames>
             <Row>
@@ -106,7 +107,7 @@ const Home = () => {
             </Row>
           </StyledGames>
         </GameList>
-        <GameList>
+        <GameList variants={fadeIn} initial="hidden" animate="show" >
           <h2>Popular Games</h2>
           <StyledGames>
             <Row>
