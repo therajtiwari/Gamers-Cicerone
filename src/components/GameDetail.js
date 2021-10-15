@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Spinner } from 'react-bootstrap'
+import { Translate } from "@material-ui/icons";
 
 const GameDetail = ({ pathID }) => {
   // history
@@ -29,61 +30,52 @@ const GameDetail = ({ pathID }) => {
 
   return (
     <>
-      {/* {!isLoading ? ( */}
-      <CardShadow
-        className="shadowArea"
-        onClick={exitHandler}
-        style={{ padding: "3rem auto" }}
-      >
-        <Detail layoutId={pathID}>
-          <Stats>
-            <Rating>
-              <motion.h3 layoutId={"title " + pathID}>{gameDetail.name}</motion.h3>
-              <h3 style={{ marginTop: "1rem" }}>
-                Rating: {gameDetail.rating}
-              </h3>
-            </Rating>
-            <Info>
-              <h3>Platforms</h3>
-              <Platforms>
-                {gameDetail.platforms.map((data) => (
-                  <h3>{data.platform.name} </h3>
-                ))}
-              </Platforms>
-            </Info>
-          </Stats>
-          <Media>
-            <motion.img
-              layoutId={"image " + pathID}
-              src={gameDetail.background_image}
-              alt={gameDetail.name + "-main"}
-            />
-          </Media>
-          <Description>
-            <p>{gameDetail.description_raw}</p>
-          </Description>
-          <Gallery>
-            {gameSS.results.map((ss) => (
-              <img src={ss.image} alt={ss.image} key={ss.image}></img>
-            ))}
-          </Gallery>
-        </Detail>
-      </CardShadow>
-      {/* ) :
-        <>
-          <CardShadow
-            className="shadowArea"
-            onClick={exitHandler}
-            style={{ padding: "3rem auto" }}
-          >
-            <Detail>
-              <div style={{ width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <Spinner animation="border" style={{ minHeight: "100px", minWidth: "35px" }} variant="secondary" />
-              </div>
-            </Detail>
-          </CardShadow>
-
-        </>} */}
+      {!isLoading ? (
+        <CardShadow
+          className="shadowArea"
+          onClick={exitHandler}
+          style={{ padding: "3rem auto" }}
+        >
+          <Detail layoutId={pathID}>
+            <Stats>
+              <Rating>
+                <motion.h3 layoutId={"title " + pathID}>{gameDetail.name}</motion.h3>
+                <h3 style={{ marginTop: "1rem" }}>
+                  Rating: {gameDetail.rating}
+                </h3>
+              </Rating>
+              <Info>
+                <h3>Platforms</h3>
+                <Platforms>
+                  {gameDetail.platforms.map((data) => (
+                    <h3>{data.platform.name} </h3>
+                  ))}
+                </Platforms>
+              </Info>
+            </Stats>
+            <Media>
+              <motion.img
+                layoutId={"image " + pathID}
+                src={gameDetail.background_image}
+                alt={gameDetail.name + "-main"}
+              />
+            </Media>
+            <Description>
+              <p>{gameDetail.description_raw}</p>
+            </Description>
+            <Gallery>
+              {gameSS.results.map((ss) => (
+                <img src={ss.image} alt={ss.image} key={ss.image}></img>
+              ))}
+            </Gallery>
+          </Detail>
+        </CardShadow>
+      ) :
+        <CardShadow>
+          <div style={{ zIndex: "20000 !important", position: "fixed", top: "50%", left: "50%", transform: "translate(-50%)" }}>
+            <Spinner animation="grow" style={{ minHeight: "100px", zIndex: "20000 !important", minWidth: "100px" }} variant="dark" />
+          </div>
+        </CardShadow>}
     </>
   );
 };
