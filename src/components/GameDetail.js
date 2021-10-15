@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 //REDUX
 import { useSelector } from "react-redux";
@@ -7,12 +7,28 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Spinner } from 'react-bootstrap'
-import { Translate } from "@material-ui/icons";
+
+import android from "../images/android.svg";
+import gamepad from "../images/gamepad.svg";
+import ios from "../images/ios.svg";
+import nintendo from "../images/nintendo.svg";
+import ps from "../images/ps.png";
+import windows from "../images/windows.svg"
+import steam from "../images/steam.svg";
+import xbox from "../images/xbox.svg";
+
+import halfstar from "../images/halfstar.png"
+import fullstart from "../images/fullstar.png"
+import empstar from "../images/empstar.png"
+
+
 
 const GameDetail = ({ pathID }) => {
   // history
   console.log("path from details", typeof (pathID))
   const history = useHistory();
+  const [style, setStyle] = useState({ display: 'none' });
+
 
   const { gameSS, gameDetail, isLoading } = useSelector(
     (state) => state.details
@@ -21,7 +37,6 @@ const GameDetail = ({ pathID }) => {
   const exitHandler = (e) => {
     // console.log(e.target.classList);
     if (e.target.classList.contains("shadowArea")) {
-      // console.log("got it");
       document.body.style.overflow = "auto";
       history.push("/");
       // console.log(history);
@@ -40,15 +55,20 @@ const GameDetail = ({ pathID }) => {
             <Stats>
               <Rating>
                 <motion.h3 layoutId={"title " + pathID}>{gameDetail.name}</motion.h3>
-                <h3 style={{ marginTop: "1rem" }}>
-                  Rating: {gameDetail.rating}
+                <h3 style={{ marginTop: "1rem" }} >
+                  {/* Rating: {gameDetail.rating} */}
+                  {getStar(gameDetail.rating)}
                 </h3>
               </Rating>
               <Info>
                 <h3>Platforms</h3>
                 <Platforms>
                   {gameDetail.platforms.map((data) => (
-                    <h3>{data.platform.name} </h3>
+                    <div >
+                      {/* <h5>{data.platform.name} {" "}  </h5> */}
+                      <img style={{ width: "100%", maxWidth: "35px", marginRight: "0.6rem" }} src={getPlatformImage(data.platform.name)}>
+                      </img>
+                    </div>
                   ))}
                 </Platforms>
               </Info>
@@ -79,6 +99,48 @@ const GameDetail = ({ pathID }) => {
     </>
   );
 };
+
+const getPlatformImage = (platform) => {
+  switch (platform) {
+    case "Android":
+      return android;
+    case "iOS":
+      return ios;
+    case "Nintendo Switch":
+      return nintendo;
+    case "PlayStation 4":
+      return ps;
+    case "PlayStation 5":
+      return ps;
+    case "PC":
+      return windows;
+    case "Xbox Series S/X":
+      return xbox;
+    case "Xbox One":
+      return xbox;
+    case "PC":
+      return steam;
+    default:
+      return gamepad;
+  }
+};
+
+const getStar = (rating) => {
+  let star = Math.floor(rating);
+  let halfStar = Math.floor((rating - star) * 2);
+  let emptyStar = 5 - star - halfStar;
+  let starArray = [];
+  for (let i = 0; i < star; i++) {
+    starArray.push(<img src={fullstart} alt="fullstar" style={{ maxWidth: "35px" }}></img>)
+  }
+  if (halfStar > 0) {
+    starArray.push(<img src={halfstar} alt="halfstar" style={{ maxWidth: "35px" }}></img>)
+  }
+  for (let i = 0; i < emptyStar; i++) {
+    starArray.push(<img src={empstar} alt="emptystar" style={{ maxWidth: "35px" }}></img>)
+  }
+  return starArray;
+}
 
 const CardShadow = styled(motion.div)`
   width: 100%;

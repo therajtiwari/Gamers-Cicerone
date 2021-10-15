@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gameActions";
 import { useLocation } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 //components
 import GameCards from "../components/GameCards";
 import GameDetail from "../components/GameDetail";
+import Nav from "../components/Nav"
+import { loadSearchedGames } from '../actions/gameActions'
+
 // import gamesReducer from "../reducers/gamesReducers";
 //styling
 import styled from "styled-components";
@@ -13,33 +16,66 @@ import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 
 const Home = () => {
 
-  // console.log("in homeeeeeeeeeeeeeeeeee")
   //   fetch games
   const dispatch = useDispatch();
+  const [searchedGame, changeSearchedGame] = useState('');
+  const [loadmore, changeLoadMore] = useState(true);
+
 
   useEffect(() => {
     dispatch(loadGames());
   }, [dispatch]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loadSearchedGames(searchedGame, 12));
+    changeLoadMore(false);
+
+  }
+
 
   // getting the current location
   const location = useLocation();
   const pathID = location.pathname.split("/")[2];
-  console.log("home", typeof (pathID));
+  // console.log("home", typeof (pathID));
   //get the data back
-  const { popular, latest, upcoming } = useSelector((state) => state.games);
+  const { popular, latest, upcoming, searched } = useSelector((state) => state.games);
   return (
     <AnimateSharedLayout type="crossfade">
       <Container fluid style={{ width: "80%" }}>
-
+        <Nav searchedGame={searchedGame} changeSearchedGame={changeSearchedGame} loadmore={loadmore} changeLoadMore={changeLoadMore} />
         <AnimatePresence>
           {pathID ? <GameDetail pathID={pathID} /> : <></>}
         </AnimatePresence>
-        <h2>Latest Popular Games</h2>
 
+        {searched && searched.length > 0 ?
+          <>
+            <h2>Search Results</h2>
+            <StyledGames>
+              <Row>
+                {searched.map((game) => (
+                  <Col md={6} sm={12} lg={4}>
+                    <GameCards
+                      name={game.name}
+                      released={game.released}
+                      gameImage={game.background_image}
+                      id={game.id}
+                      key={game.id}
+                    />
+                  </Col>
+                ))}
+
+              </Row>
+              {loadmore && <Button variant="secondary" onClick={handleSubmit} style={{ float: "right" }}>Load More</Button>}
+            </StyledGames></>
+          : <> </>}
+
+
+
+        <h2>Latest Popular Games</h2>
         <StyledGames>
           <Row>
-            {upcoming.map((game) => (
+            {latest.map((game) => (
               <Col md={6} sm={12} lg={4}>
                 <GameCards
                   name={game.name}
@@ -105,5 +141,6 @@ const StyledGames = styled(motion.div)`
   // grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   // grid-column-gap: 4rem;
   // grid-row-gap: 6rem;
+  margin: 3rem auto;
 `;
 export default Home;

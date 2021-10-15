@@ -9,7 +9,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <div>
-
       <GlobalStyles />
       <Switch>
         <Route exact path={["/", "/game/:id"]}>

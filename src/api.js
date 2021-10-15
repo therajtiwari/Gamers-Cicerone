@@ -34,8 +34,9 @@ const apiKey = process.env.REACT_APP_API;
 //popular games
 const popular_games = `games?key=${apiKey}&dates=${twentyYearsBackDateToday},${currentDateToday}&ordering=-rating&page_size=12`;
 const upcoming_games = `games?key=${apiKey}&dates=${currentDateToday},${nextYearDateToday}&ordering=-added&page_size=12`;
-const latest_games = `games?key=${apiKey}&dates=${prevYearDateToday},${currentDateToday}&orderin=-released&page_size=12`;
-
+const latest_games = `games?key=${apiKey}&dates=${prevYearDateToday},${currentDateToday}&ordering=-added&page_size=12`;
+const searched_games = (name, numOfResults) => `games?key=${apiKey}&search=${name}&ordering=-latest&page_size=${numOfResults}`;
+// https://api.rawg.io/api/games?search=gta&ordering=-released&page_size=10
 export const popularGamesURL = () => base_url + popular_games;
 export const upcomingGamesURL = () => base_url + upcoming_games;
 export const latest_gamesURL = () => base_url + latest_games;
@@ -43,6 +44,8 @@ export const gameDetailsURL = (id) =>
   base_url + `games/` + id + `?key=${apiKey}`;
 export const gameScreenshotsURL = (id) =>
   base_url + "games/" + id + "/screenshots" + `?key=${apiKey}`;
+
+export const searchedGamesURL = (name, numOfResults) => { console.log(numOfResults); return base_url + searched_games(name, numOfResults) };
 // console.log(popularGamesURL());
 // console.log(upcomingGamesURL());
 // console.log(latest_gamesURL());
