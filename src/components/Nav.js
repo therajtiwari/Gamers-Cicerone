@@ -19,7 +19,7 @@ const Nav = ({ searchedGame, changeSearchedGame, loadmore, changeLoadMore }) => 
 
     return (
         <StyledNav>
-            <h1>Gamer's Cicerone</h1>
+            <h1>Gamers' Cicerone</h1>
             <div className="search-bar" style={{ width: "50%", margin: "auto", marginTop: "20px" }}>
                 <InputGroup style={{ boxShadow: " rgba(149, 157, 165, 0.7) 0px 8px 24px", border: "none" }}>
                     <FormControl

@@ -49,7 +49,7 @@ const Home = () => {
         </AnimatePresence>
 
         {searched && searched.length > 0 ?
-          <>
+          <GameList>
             <h2>Search Results</h2>
             <StyledGames>
               <Row>
@@ -67,27 +67,63 @@ const Home = () => {
 
               </Row>
               {loadmore && <Button variant="secondary" onClick={handleSubmit} style={{ float: "right" }}>Load More</Button>}
-            </StyledGames></>
+            </StyledGames>
+          </GameList>
           : <> </>}
-
-
-
-        <h2>Latest Popular Games</h2>
-        <StyledGames>
-          <Row>
-            {latest.map((game) => (
-              <Col md={6} sm={12} lg={4}>
-                <GameCards
-                  name={game.name}
-                  released={game.released}
-                  gameImage={game.background_image}
-                  id={game.id}
-                  key={game.id}
-                />
-              </Col>
-            ))}
-          </Row>
-        </StyledGames>
+        <GameList>
+          <h2>Upcoming Games</h2>
+          <StyledGames>
+            <Row>
+              {upcoming.map((game) => (
+                <Col md={6} sm={12} lg={4}>
+                  <GameCards
+                    name={game.name}
+                    released={game.released}
+                    gameImage={game.background_image}
+                    id={game.id}
+                    key={game.id}
+                  />
+                </Col>
+              ))}
+            </Row>
+          </StyledGames>
+        </GameList>
+        <GameList>
+          <h2>Latest Games</h2>
+          <StyledGames>
+            <Row>
+              {latest.map((game) => (
+                <Col md={6} sm={12} lg={4}>
+                  <GameCards
+                    name={game.name}
+                    released={game.released}
+                    gameImage={game.background_image}
+                    id={game.id}
+                    key={game.id}
+                  />
+                </Col>
+              ))}
+            </Row>
+          </StyledGames>
+        </GameList>
+        <GameList>
+          <h2>Popular Games</h2>
+          <StyledGames>
+            <Row>
+              {popular.map((game) => (
+                <Col md={6} sm={12} lg={4}>
+                  <GameCards
+                    name={game.name}
+                    released={game.released}
+                    gameImage={game.background_image}
+                    id={game.id}
+                    key={game.id}
+                  />
+                </Col>
+              ))}
+            </Row>
+          </StyledGames>
+        </GameList>
 
         {/* <GameList>
         {pathID && <GameDetail />}
@@ -126,21 +162,28 @@ const Home = () => {
 };
 
 const GameList = styled(motion.div)`
-  margin: 3rem auto;
-  width: 80%;
-  h2 {
-    padding: 3rem 0rem;
-  }
-
-  // text-align: center;
-`;
+        margin: 3rem auto;
+       h2{
+        //  color: #48434f;
+         font-weight: bold;
+       }
+       h2:after{
+         margin-top: 0.5rem;
+          content: "";
+          height: 2px;
+          display: block;
+          background-color: #b7b5bd;
+          width: 100%;
+       }
+        // text-align: center;
+        `;
 const StyledGames = styled(motion.div)`
-  // background-color: red;
-  // min-height: 40vh;
-  // display: grid;
-  // grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  // grid-column-gap: 4rem;
-  // grid-row-gap: 6rem;
-  margin: 3rem auto;
-`;
+        // background-color: red;
+        // min-height: 40vh;
+        // display: grid;
+        // grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        // grid-column-gap: 4rem;
+        // grid-row-gap: 6rem;
+        // margin: 3rem auto;
+        `;
 export default Home;

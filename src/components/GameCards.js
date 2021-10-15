@@ -33,7 +33,7 @@ export default function GameCards({ name, released, gameImage, id }) {
     // console.log("testingggggg");
     document.body.style.overflow = "auto";
   }
-  
+
 
 
   return (
@@ -42,7 +42,7 @@ export default function GameCards({ name, released, gameImage, id }) {
         to={`/game/${id}`}
         style={{ textDecoration: "none", color: "black" }}
       >
-        <motion.h4 layoutId={"title " + stringID} style={{ textAlign: "center", paddingTop: "1rem" }}> {name}</motion.h4>
+        <motion.h4 layoutId={"title " + stringID} style={{ textAlign: "center", paddingTop: "1rem" }}> {name.length < 30 ? name : name.slice(0, 30) + "..."}</motion.h4>
         <h5
           style={{ textAlign: "center", paddingBottom: "1rem", color: "grey" }}
         >
@@ -71,3 +71,6 @@ const StyledGame = styled(motion.div)`
   // padding: 1rem;
   margin: 2rem auto;
 `;
+
+
+

@@ -24,17 +24,18 @@ const dateToday = getCurrentDate();
 const monthToday = getCurrentMonth();
 const yearToday = getCurrentYear();
 
+
 const currentDateToday = yearToday + "-" + monthToday + "-" + dateToday;
 const prevYearDateToday = yearToday - 1 + "-" + monthToday + "-" + dateToday;
 const nextYearDateToday = yearToday + 1 + "-" + monthToday + "-" + dateToday;
-const twentyYearsBackDateToday =
-  yearToday - 5 + "-" + monthToday + "-" + dateToday;
+const tenYearsBackDateToday =
+  yearToday - 10 + "-" + monthToday + "-" + dateToday;
 const apiKey = process.env.REACT_APP_API;
 
 //popular games
-const popular_games = `games?key=${apiKey}&dates=${twentyYearsBackDateToday},${currentDateToday}&ordering=-rating&page_size=12`;
+const popular_games = `games?key=${apiKey}&dates=${tenYearsBackDateToday},${currentDateToday}&ordering=-metacritic&page_size=12`;
 const upcoming_games = `games?key=${apiKey}&dates=${currentDateToday},${nextYearDateToday}&ordering=-added&page_size=12`;
-const latest_games = `games?key=${apiKey}&dates=${prevYearDateToday},${currentDateToday}&ordering=-added&page_size=12`;
+const latest_games = `games?key=${apiKey}&dates=${prevYearDateToday},${currentDateToday}&ordering=-rating&page_size=12`;
 const searched_games = (name, numOfResults) => `games?key=${apiKey}&search=${name}&ordering=-latest&page_size=${numOfResults}`;
 // https://api.rawg.io/api/games?search=gta&ordering=-released&page_size=10
 export const popularGamesURL = () => base_url + popular_games;

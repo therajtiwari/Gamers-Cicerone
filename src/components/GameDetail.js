@@ -39,7 +39,6 @@ const GameDetail = ({ pathID }) => {
     if (e.target.classList.contains("shadowArea")) {
       document.body.style.overflow = "auto";
       history.push("/");
-      // console.log(history);
     }
   };
 
